@@ -8,17 +8,6 @@
 import Foundation
 import Combine
 
-protocol MainPresenterProtocol {
-    var dateCollection: [Date] { get }
-    var currentDateText: String { get }
-    var currencies: [CurrencyModel] { get }
-    
-    func setSelectedDate() -> Int
-    func datePickerSelect(row: Int)
-    func saveButtonPressed()
-    func closeButtonPressed()
-}
-
 class MainPresenter: MainPresenterProtocol {
     
     var dateCollection: [Date] = []
@@ -29,8 +18,7 @@ class MainPresenter: MainPresenterProtocol {
         return formatDate(date: date)
     }
     
-    private let networkService = MainNetworkService()
-    private let networkManager: NetworkManager
+    private let networkService: MainNetworkService
     private let coordinator: CoordinatorProtocol
     private let view: MainViewProtocol
     
@@ -40,12 +28,12 @@ class MainPresenter: MainPresenterProtocol {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(networkManager: NetworkManager, coordinator: CoordinatorProtocol, view: MainViewProtocol) {
-        self.networkManager = networkManager
+    init(networkService: MainNetworkService, coordinator: CoordinatorProtocol, view: MainViewProtocol) {
+        self.networkService = networkService
         self.coordinator = coordinator
         self.view = view
         
-        currenciesSubscribe()
+        currenciesSink()
         buildDateCollection()
         selectedDateIndex = setSelectedDate()
     }
@@ -67,11 +55,16 @@ class MainPresenter: MainPresenterProtocol {
     
     func saveButtonPressed() {
         view.dateChanged(to: formatDate(date: selectedDate))
-        networkService.getData(date: selectedDate)
+        currenciesSink()
     }
     
     func closeButtonPressed() {
         view.dateChanged(to: formatDate(date: Date()))
+    }
+    
+    func tapOnTheCell(index: Int) {
+        let selectedCurrency = currencies[index]
+        coordinator.showConvertorVC(with: selectedCurrency)
     }
     
     private func buildDateCollection() {
@@ -83,18 +76,21 @@ class MainPresenter: MainPresenterProtocol {
         return dateFormatter.string(from: date)
     }
 
-    private func currenciesSubscribe() {
-        networkService.$currencies.sink { completion in
-            switch completion {
-            case .failure(let error):
-                fatalError(error.localizedDescription)
+    private func currenciesSink() {
+        networkService.getCurrencies(date: selectedDate).sink { competion in
+            switch competion {
             case .finished:
                 break
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.view.failure(error: error)
+                }
             }
         } receiveValue: { [weak self] currencies in
-            guard let currencies = currencies else { return }
             self?.currencies = currencies
-            self?.view.succes()
+            DispatchQueue.main.async {
+                self?.view.succes()
+            }
         }
         .store(in: &cancellables)
 

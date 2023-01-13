@@ -12,11 +12,11 @@ struct Item {
 }
 
 protocol CoordinatorProtocol {
-    func showDetail(with item: Item)
+    func createMainVC() -> UIViewController
+    func showConvertorVC(with item: CurrencyModel)
 }
 
 final class Coordinator: CoordinatorProtocol {
-    
     var currentNavigationController: UINavigationController?
     private let networkManager = NetworkManager()
     
@@ -27,16 +27,18 @@ final class Coordinator: CoordinatorProtocol {
     
     func createMainVC() -> UIViewController {
         let vc = MainViewController()
-        let presentor = MainPresenter(networkManager: networkManager, coordinator: self, view: vc)
+        let networkService = MainNetworkService(networkManager: networkManager)
+        let presentor = MainPresenter(networkService: networkService, coordinator: self, view: vc)
         vc.presenter = presentor
         
         return vc
     }
     
-    func showDetail(with item: Item) {
-//        let vc = DetailViewController()
-//        vc.configure(with: item)
-//        currentNavigationController?.pushViewController(vc, animated: true)
+    func showConvertorVC(with item: CurrencyModel) {
+        let vc = ConvertorViewController(navTitle: item.title)
+        let presentor = ConvertorPresenter(coordinator: self, view: vc)
+        currentNavigationController?.pushViewController(vc, animated: true)
+        vc.presentor = presentor
     }
     
 }

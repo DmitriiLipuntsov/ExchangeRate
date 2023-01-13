@@ -7,15 +7,28 @@
 
 import Foundation
 
-class Endpoints {
-    
-    private init() {}
-    
-    static let baseUrl = "https://www.cbr-xml-daily.ru/"
-    
-    static func getArchiveDataEndpoint(date: String) -> String {
-        return baseUrl + "archive/\(date)/daily_json.js"
+struct Endpoint {
+    var path: String
+}
+
+extension Endpoint {
+    var url: URL {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "www.cbr-xml-daily.ru"
+        components.path = "/archive/\(path)/daily_json.js"
+        
+        guard let url = components.url else {
+            preconditionFailure("Invalid URL components: \(components)")
+        }
+        
+        return url
     }
 }
 
+extension Endpoint {
+    static func currencies(date: String) -> Self {
+        return Endpoint(path: date)
+    }
+}
 

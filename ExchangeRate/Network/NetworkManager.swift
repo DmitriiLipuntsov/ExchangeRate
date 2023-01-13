@@ -8,46 +8,41 @@
 import Foundation
 import Combine
 
-class NetworkManager {
+protocol NetworkManagerProtocol: AnyObject {
+    typealias Headers = [String: Any]
     
-    enum NetworkError: LocalizedError {
-        case badURLResponse(url: URL)
-        case unknown
+    func get<T>(
+        type: T.Type,
+        url: URL,
+        headers: Headers
+    ) -> AnyPublisher<T, Error> where T: Decodable
+    
+}
+
+class NetworkManager: NetworkManagerProtocol {
+    
+    func get<T: Decodable>(
+        type: T.Type,
+        url: URL,
+        headers: Headers
+    ) -> AnyPublisher<T, Error> {
+        var urlRequest = URLRequest(url: url)
         
-        var errorDescription: String? {
-            switch self {
-            case .badURLResponse(let url):
-                return "[🔥] Bad response from URL: \(url)"
-            case .unknown:
-                return "[⚠️] Unknown error occurred"
+        headers.forEach { (key, value) in
+            if let value = value as? String {
+                urlRequest.setValue(value, forHTTPHeaderField: key)
             }
         }
-    }
-    
-    static func download(url: URL) -> AnyPublisher<Data, Error> {
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .subscribe(on: DispatchQueue.global(qos: .default))
-            .tryMap({ try NetworkManager.handleURLResponse(output: $0, url: url) })
-            .receive(on: DispatchQueue.main)
+
+        return URLSession.shared.dataTaskPublisher(for: urlRequest)
+            .map(\.data)
+            .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
-    
-    static func handleURLResponse(output: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
-        guard
-            let response = output.response as? HTTPURLResponse,
-            response.statusCode >= 200 && response.statusCode < 300
-        else {
-            throw NetworkError.badURLResponse(url: url)
-        }
-        return output.data
-    }
-    
-    static func handleCompletion(completion: Subscribers.Completion<Error>) {
-        switch completion {
-        case .finished:
-            break
-        case .failure(let error):
-            debugPrint("decoding failed with error - \(error.localizedDescription)")
-        }
-    }
+}
+
+protocol CurrenciesLogicControllerProtocol: AnyObject {
+    var networkController: NetworkManagerProtocol { get }
+
+    func getCurrencies(date: String) -> AnyPublisher<CurranciesEntity, Error>
 }

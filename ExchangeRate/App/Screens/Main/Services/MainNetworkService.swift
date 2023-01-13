@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class MainNetworkService {
-    @Published var currencies: [CurrencyModel]? = nil
+    let networkManager: NetworkManagerProtocol
     
     private let dateFormatter: DateFormatter =  {
         let df = DateFormatter()
@@ -19,30 +19,28 @@ class MainNetworkService {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
-        getData(date: Date())
+    init(networkManager: NetworkManagerProtocol) {
+        self.networkManager = networkManager
     }
     
-    func getData(date: Date) {
+    func getCurrencies(date: Date) -> AnyPublisher<[CurrencyModel], Error> {
         let stringDate = dateFormatter.string(from: date)
-        guard let url = URL(string: Endpoints.getArchiveDataEndpoint(date: stringDate)) else {
-            fatalError("Invalid string url store")
-        }
+        let endpoint = Endpoint.currencies(date: stringDate)
         
-        NetworkManager.download(url: url)
-            .decode(type: CurranciesEntity.self, decoder: JSONDecoder())
-            .sink(
-                receiveCompletion: NetworkManager.handleCompletion,
-                receiveValue: { [weak self] response in
-                    guard let self = self else {
-                        return
-                    }
-                    self.currencies = response.valute.values.map { entity -> CurrencyModel in
-                        return self.transformResponseCurrencyEntityToModel(entity: entity)
-                    }
+        return networkManager.get(
+            type: CurranciesEntity.self,
+            url: endpoint.url,
+            headers: [:])
+            .map { response -> [CurrencyModel] in
+                return response.valute.values.map { entity -> CurrencyModel in
+                    return CurrencyModel(
+                        id: entity.id,
+                        title: entity.charCode,
+                        value: entity.value
+                    )
                 }
-            )
-            .store(in: &cancellables)
+            }
+            .eraseToAnyPublisher()
     }
     
     private func transformResponseCurrencyEntityToModel(entity: CurrancyEntity) -> CurrencyModel {

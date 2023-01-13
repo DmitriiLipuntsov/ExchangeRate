@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol MainViewProtocol {
-    func dateChanged(to stringDate: String)
-    func succes()
-    func failure(error: Error)
-}
-
 class MainViewController: UIViewController {
     
     var presenter: MainPresenterProtocol!
@@ -21,7 +15,18 @@ class MainViewController: UIViewController {
     
     private let datePickerView = DatePickerView()
     private let activitiIndicator = UIActivityIndicatorView()
-    private var collectionView: UICollectionView!
+    private let errorLabel = UILabel()
+    
+    private var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
+        let sizeItem: CGFloat = .screenWidth / 3 - 21
+        layout.itemSize = CGSize(width: sizeItem, height: sizeItem + 6)
+        
+        return UICollectionView(frame: .zero, collectionViewLayout: layout)
+    }()
     
     private let dateFormatter: DateFormatter =  {
         let df = DateFormatter()
@@ -38,9 +43,10 @@ class MainViewController: UIViewController {
     }
     
     private func setupUI() {
-        setupActivitiIndicator()
         setupDatePickerButton()
         setupCollectionView()
+        setupActivitiIndicator()
+        setupErrorLabel()
         setupDatePickerView()
         
         setConstraints()
@@ -87,15 +93,11 @@ class MainViewController: UIViewController {
         view.addSubview(datePickerButton)
     }
     
+    @objc private func datePickerButtonAction() {
+        datePickerView.isHidden = false
+    }
+    
     private func setupCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 8
-        let sizeItem: CGFloat = .screenWidth / 3 - 21
-        layout.itemSize = CGSize(width: sizeItem, height: sizeItem + 6)
-        
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 23, bottom: 0, right: 23)
         collectionView.register(CurrancyCell.self, forCellWithReuseIdentifier: CurrancyCell.identifier)
@@ -106,8 +108,14 @@ class MainViewController: UIViewController {
         view.addSubview(collectionView)
     }
     
-    @objc private func datePickerButtonAction() {
-        datePickerView.isHidden = false
+    private func setupErrorLabel() {
+        errorLabel.text = "Выходной день"
+        errorLabel.isHidden = true
+        errorLabel.backgroundColor = .pickerBackground
+        errorLabel.textAlignment = .center
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(errorLabel)
     }
 }
 
@@ -169,6 +177,22 @@ extension MainViewController {
                 equalTo: view.layoutMarginsGuide.bottomAnchor,
                 constant: -15)
         ])
+        
+        // errorLabel
+        NSLayoutConstraint.activate([
+            errorLabel.topAnchor.constraint(
+                equalTo: datePickerButton.bottomAnchor,
+                constant: 20),
+            errorLabel.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor
+            ),
+            errorLabel.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor
+            ),
+            errorLabel.bottomAnchor.constraint(
+                equalTo: view.layoutMarginsGuide.bottomAnchor,
+                constant: -15)
+        ])
     }
 }
 
@@ -198,14 +222,18 @@ extension MainViewController: UIPickerViewDelegate{
 // MARK: - MainViewProtocol
 extension MainViewController: MainViewProtocol {
     func succes() {
+        errorLabel.isHidden = true
+        activitiIndicator.isHidden = true
         collectionView.reloadData()
     }
     
     func failure(error: Error) {
-        fatalError()
+        activitiIndicator.isHidden = true
+        errorLabel.isHidden = false
     }
     
     func dateChanged(to stringDate: String) {
+        activitiIndicator.isHidden = false
         datePickerButton.setTitle(stringDate, for: .normal)
     }
 }
@@ -225,7 +253,9 @@ extension MainViewController: DatePickerViewDelegate {
 
 //MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.tapOnTheCell(index: indexPath.row)
+    }
 }
 
 //MARK: - UICollectionViewDataSource
@@ -247,5 +277,25 @@ extension MainViewController: UICollectionViewDataSource {
         let model = presenter.currencies[indexPath.row]
         cell.configure(model: model)
         return cell
+    }
+}
+
+//MARK: - Setup Canvas
+import SwiftUI
+struct ViewControllerProvider: PreviewProvider {
+    static var previews: some View {
+        ContainerView().edgesIgnoringSafeArea(.all)
+    }
+    
+    struct ContainerView: UIViewControllerRepresentable {
+        
+        let viewController = MainViewController()
+        func makeUIViewController(context: Context) -> some UIViewController {
+            return viewController
+        }
+        
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+            
+        }
     }
 }

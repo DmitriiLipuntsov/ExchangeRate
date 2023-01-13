@@ -31,6 +31,12 @@
 		C0C040AC297118A500863FD1 /* SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0C040A9297118A500863FD1 /* SFProDisplay-Bold.ttf */; };
 		C0C040AD297118A500863FD1 /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0C040AA297118A500863FD1 /* SFProDisplay-Regular.ttf */; };
 		C0C040AF2971391C00863FD1 /* CustomStringConvertible+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040AE2971391C00863FD1 /* CustomStringConvertible+Ex.swift */; };
+		C0C040B22971582700863FD1 /* MainViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040B12971582700863FD1 /* MainViewProtocol.swift */; };
+		C0C040B42971584700863FD1 /* MainPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040B32971584700863FD1 /* MainPresenterProtocol.swift */; };
+		C0C040B829715A8800863FD1 /* ConvertorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040B729715A8800863FD1 /* ConvertorViewController.swift */; };
+		C0C040BB29715BFC00863FD1 /* ConvertorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040BA29715BFC00863FD1 /* ConvertorPresenter.swift */; };
+		C0C040BF29715D6200863FD1 /* ConvertorPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040BE29715D6200863FD1 /* ConvertorPresenterProtocol.swift */; };
+		C0C040C129715D8500863FD1 /* ConvertorViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040C029715D8500863FD1 /* ConvertorViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +66,12 @@
 		C0C040A9297118A500863FD1 /* SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.ttf"; sourceTree = "<group>"; };
 		C0C040AA297118A500863FD1 /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		C0C040AE2971391C00863FD1 /* CustomStringConvertible+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomStringConvertible+Ex.swift"; sourceTree = "<group>"; };
+		C0C040B12971582700863FD1 /* MainViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
+		C0C040B32971584700863FD1 /* MainPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterProtocol.swift; sourceTree = "<group>"; };
+		C0C040B729715A8800863FD1 /* ConvertorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorViewController.swift; sourceTree = "<group>"; };
+		C0C040BA29715BFC00863FD1 /* ConvertorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorPresenter.swift; sourceTree = "<group>"; };
+		C0C040BE29715D6200863FD1 /* ConvertorPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorPresenterProtocol.swift; sourceTree = "<group>"; };
+		C0C040C029715D8500863FD1 /* ConvertorViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				C0C0407D296ED1EB00863FD1 /* Main */,
+				C0C040B529715A0F00863FD1 /* Convertor */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -125,6 +138,7 @@
 		C0C0407D296ED1EB00863FD1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				C0C040B02971581800863FD1 /* Protocols */,
 				C0C0409829703CA800863FD1 /* Services */,
 				C0C04083296ED4D500863FD1 /* Model */,
 				C0C04082296ED4CD00863FD1 /* Presenter */,
@@ -241,6 +255,58 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		C0C040B02971581800863FD1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C0C040B12971582700863FD1 /* MainViewProtocol.swift */,
+				C0C040B32971584700863FD1 /* MainPresenterProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C0C040B529715A0F00863FD1 /* Convertor */ = {
+			isa = PBXGroup;
+			children = (
+				C0C040BD29715CAF00863FD1 /* Protocols */,
+				C0C040BC29715CA800863FD1 /* Model */,
+				C0C040B929715BF400863FD1 /* Presenter */,
+				C0C040B629715A7300863FD1 /* View */,
+			);
+			path = Convertor;
+			sourceTree = "<group>";
+		};
+		C0C040B629715A7300863FD1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C0C040B729715A8800863FD1 /* ConvertorViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C0C040B929715BF400863FD1 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				C0C040BA29715BFC00863FD1 /* ConvertorPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		C0C040BC29715CA800863FD1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C0C040BD29715CAF00863FD1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C0C040BE29715D6200863FD1 /* ConvertorPresenterProtocol.swift */,
+				C0C040C029715D8500863FD1 /* ConvertorViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -316,10 +382,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0C0408F296FDC5F00863FD1 /* UIColor+Ex.swift in Sources */,
+				C0C040BB29715BFC00863FD1 /* ConvertorPresenter.swift in Sources */,
 				C0C04088296ED50E00863FD1 /* NetworkManager.swift in Sources */,
 				C0C0409D29703D5000863FD1 /* Endpoints.swift in Sources */,
 				C0C04085296ED4E500863FD1 /* MainPresenter.swift in Sources */,
+				C0C040C129715D8500863FD1 /* ConvertorViewProtocol.swift in Sources */,
+				C0C040BF29715D6200863FD1 /* ConvertorPresenterProtocol.swift in Sources */,
 				C0C04080296ED3FF00863FD1 /* Coordinator.swift in Sources */,
+				C0C040B42971584700863FD1 /* MainPresenterProtocol.swift in Sources */,
 				C0C040A1297054BE00863FD1 /* CurrencyModel.swift in Sources */,
 				C0C0409A29703CBB00863FD1 /* MainNetworkService.swift in Sources */,
 				C0C0406A296ECB0100863FD1 /* MainViewController.swift in Sources */,
@@ -332,7 +402,9 @@
 				C0C0408B296FD07C00863FD1 /* DatePickerView.swift in Sources */,
 				C0C04066296ECB0100863FD1 /* AppDelegate.swift in Sources */,
 				C0C04095297014C200863FD1 /* UIButton+Ex.swift in Sources */,
+				C0C040B829715A8800863FD1 /* ConvertorViewController.swift in Sources */,
 				C0C04068296ECB0100863FD1 /* SceneDelegate.swift in Sources */,
+				C0C040B22971582700863FD1 /* MainViewProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
