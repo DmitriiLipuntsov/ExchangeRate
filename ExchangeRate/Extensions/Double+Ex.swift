@@ -10,10 +10,9 @@ import Foundation
 extension Double {
     
     var to2fString: String {
-        var roundedDouble = self * 100
-        roundedDouble.round()
+        var roundedDouble = Int(self * 100)
         roundedDouble = roundedDouble / 100
-        let stringFromNumber = String(roundedDouble)
+        let stringFromNumber = String(self)
         
         if let dotIndex = stringFromNumber.range(of: ".")?.upperBound {
             let charactersCount = stringFromNumber.count

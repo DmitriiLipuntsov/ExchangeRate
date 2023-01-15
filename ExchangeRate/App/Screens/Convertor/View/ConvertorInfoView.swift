@@ -26,7 +26,7 @@ class ConvertorInfoView: UIView {
     
     func configure(title: String, value: Double) {
         titleLabel.text = title
-        exchangeRateLabel.text = String(format: "%.2f", value) +  " ₽"
+        exchangeRateLabel.text = value.to2fString + " ₽"
     }
     
     private func setupUI() {
