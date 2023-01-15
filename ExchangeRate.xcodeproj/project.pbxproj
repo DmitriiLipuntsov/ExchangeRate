@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C05E9BCD297413BC001DA312 /* URLSession+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05E9BCC297413BC001DA312 /* URLSession+Ex.swift */; };
+		C05E9BCF29741B01001DA312 /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05E9BCE29741B01001DA312 /* CacheHelper.swift */; };
 		C0C04066296ECB0100863FD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C04065296ECB0100863FD1 /* AppDelegate.swift */; };
 		C0C04068296ECB0100863FD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C04067296ECB0100863FD1 /* SceneDelegate.swift */; };
 		C0C0406A296ECB0100863FD1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C04069296ECB0100863FD1 /* MainViewController.swift */; };
@@ -37,9 +39,20 @@
 		C0C040BB29715BFC00863FD1 /* ConvertorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040BA29715BFC00863FD1 /* ConvertorPresenter.swift */; };
 		C0C040BF29715D6200863FD1 /* ConvertorPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040BE29715D6200863FD1 /* ConvertorPresenterProtocol.swift */; };
 		C0C040C129715D8500863FD1 /* ConvertorViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040C029715D8500863FD1 /* ConvertorViewProtocol.swift */; };
+		C0C040C32971633F00863FD1 /* ConvertorInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040C22971633F00863FD1 /* ConvertorInfoView.swift */; };
+		C0C040C5297192E200863FD1 /* ConvertorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040C4297192E200863FD1 /* ConvertorView.swift */; };
+		C0C040C72971948200863FD1 /* SFProText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0C040C62971948200863FD1 /* SFProText-Medium.ttf */; };
+		C0C040C92971B83500863FD1 /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040C82971B83500863FD1 /* UIView+Ex.swift */; };
+		C0C040CB2971C10E00863FD1 /* UITextField+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040CA2971C10E00863FD1 /* UITextField+Ex.swift */; };
+		C0C040CD2971CA8000863FD1 /* ConvertorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040CC2971CA8000863FD1 /* ConvertorItemView.swift */; };
+		C0C040CF2972859A00863FD1 /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040CE2972859A00863FD1 /* ExchangeRateModel.swift */; };
+		C0C040D1297291B200863FD1 /* Double+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040D0297291B200863FD1 /* Double+Ex.swift */; };
+		C0C040D32972938300863FD1 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C040D22972938300863FD1 /* String+Ex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C05E9BCC297413BC001DA312 /* URLSession+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Ex.swift"; sourceTree = "<group>"; };
+		C05E9BCE29741B01001DA312 /* CacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHelper.swift; sourceTree = "<group>"; };
 		C0C04062296ECB0100863FD1 /* ExchangeRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExchangeRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C04065296ECB0100863FD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0C04067296ECB0100863FD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +85,15 @@
 		C0C040BA29715BFC00863FD1 /* ConvertorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorPresenter.swift; sourceTree = "<group>"; };
 		C0C040BE29715D6200863FD1 /* ConvertorPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorPresenterProtocol.swift; sourceTree = "<group>"; };
 		C0C040C029715D8500863FD1 /* ConvertorViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorViewProtocol.swift; sourceTree = "<group>"; };
+		C0C040C22971633F00863FD1 /* ConvertorInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorInfoView.swift; sourceTree = "<group>"; };
+		C0C040C4297192E200863FD1 /* ConvertorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorView.swift; sourceTree = "<group>"; };
+		C0C040C62971948200863FD1 /* SFProText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Medium.ttf"; sourceTree = "<group>"; };
+		C0C040C82971B83500863FD1 /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
+		C0C040CA2971C10E00863FD1 /* UITextField+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ex.swift"; sourceTree = "<group>"; };
+		C0C040CC2971CA8000863FD1 /* ConvertorItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertorItemView.swift; sourceTree = "<group>"; };
+		C0C040CE2972859A00863FD1 /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
+		C0C040D0297291B200863FD1 /* Double+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ex.swift"; sourceTree = "<group>"; };
+		C0C040D22972938300863FD1 /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C05E9BD029741FF3001DA312 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C05E9BCE29741B01001DA312 /* CacheHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		C0C04059296ECB0100863FD1 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				C0C04089296ED6A400863FD1 /* AppDelegates */,
+				C05E9BD029741FF3001DA312 /* Helpers */,
 				C0C0408D296FDC4600863FD1 /* Extensions */,
 				C0C0408C296FDC1600863FD1 /* Resurces */,
 				C0C04086296ED50000863FD1 /* Network */,
@@ -215,6 +246,11 @@
 				C0C040922970132E00863FD1 /* CGFloat+Ex.swift */,
 				C0C04094297014C200863FD1 /* UIButton+Ex.swift */,
 				C0C040962970165100863FD1 /* Date+Ex.swift */,
+				C0C040C82971B83500863FD1 /* UIView+Ex.swift */,
+				C0C040CA2971C10E00863FD1 /* UITextField+Ex.swift */,
+				C0C040D0297291B200863FD1 /* Double+Ex.swift */,
+				C0C040D22972938300863FD1 /* String+Ex.swift */,
+				C05E9BCC297413BC001DA312 /* URLSession+Ex.swift */,
 				C0C040AE2971391C00863FD1 /* CustomStringConvertible+Ex.swift */,
 			);
 			path = Extensions;
@@ -250,6 +286,7 @@
 			children = (
 				C0C040A9297118A500863FD1 /* SFProDisplay-Bold.ttf */,
 				C0C040AA297118A500863FD1 /* SFProDisplay-Regular.ttf */,
+				C0C040C62971948200863FD1 /* SFProText-Medium.ttf */,
 				C0C040A8297118A500863FD1 /* SFProText-Semibold.ttf */,
 			);
 			path = Fonts;
@@ -279,6 +316,9 @@
 			isa = PBXGroup;
 			children = (
 				C0C040B729715A8800863FD1 /* ConvertorViewController.swift */,
+				C0C040C22971633F00863FD1 /* ConvertorInfoView.swift */,
+				C0C040C4297192E200863FD1 /* ConvertorView.swift */,
+				C0C040CC2971CA8000863FD1 /* ConvertorItemView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -294,6 +334,7 @@
 		C0C040BC29715CA800863FD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C0C040CE2972859A00863FD1 /* ExchangeRateModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0C0407A296ECC4400863FD1 /* .gitignore in Resources */,
+				C0C040C72971948200863FD1 /* SFProText-Medium.ttf in Resources */,
 				C0C040AB297118A500863FD1 /* SFProText-Semibold.ttf in Resources */,
 				C0C040AC297118A500863FD1 /* SFProDisplay-Bold.ttf in Resources */,
 				C0C040AD297118A500863FD1 /* SFProDisplay-Regular.ttf in Resources */,
@@ -383,28 +425,38 @@
 			files = (
 				C0C0408F296FDC5F00863FD1 /* UIColor+Ex.swift in Sources */,
 				C0C040BB29715BFC00863FD1 /* ConvertorPresenter.swift in Sources */,
+				C05E9BCF29741B01001DA312 /* CacheHelper.swift in Sources */,
 				C0C04088296ED50E00863FD1 /* NetworkManager.swift in Sources */,
 				C0C0409D29703D5000863FD1 /* Endpoints.swift in Sources */,
 				C0C04085296ED4E500863FD1 /* MainPresenter.swift in Sources */,
 				C0C040C129715D8500863FD1 /* ConvertorViewProtocol.swift in Sources */,
 				C0C040BF29715D6200863FD1 /* ConvertorPresenterProtocol.swift in Sources */,
+				C05E9BCD297413BC001DA312 /* URLSession+Ex.swift in Sources */,
 				C0C04080296ED3FF00863FD1 /* Coordinator.swift in Sources */,
 				C0C040B42971584700863FD1 /* MainPresenterProtocol.swift in Sources */,
+				C0C040D32972938300863FD1 /* String+Ex.swift in Sources */,
+				C0C040C5297192E200863FD1 /* ConvertorView.swift in Sources */,
 				C0C040A1297054BE00863FD1 /* CurrencyModel.swift in Sources */,
 				C0C0409A29703CBB00863FD1 /* MainNetworkService.swift in Sources */,
 				C0C0406A296ECB0100863FD1 /* MainViewController.swift in Sources */,
 				C0C040932970132E00863FD1 /* CGFloat+Ex.swift in Sources */,
 				C0C040A529706E4300863FD1 /* AppFonts.swift in Sources */,
 				C0C040AF2971391C00863FD1 /* CustomStringConvertible+Ex.swift in Sources */,
+				C0C040CD2971CA8000863FD1 /* ConvertorItemView.swift in Sources */,
 				C0C0409F2970543A00863FD1 /* CurrenciesEntity.swift in Sources */,
 				C0C040A329706A0B00863FD1 /* CurrancyCell.swift in Sources */,
+				C0C040D1297291B200863FD1 /* Double+Ex.swift in Sources */,
+				C0C040CB2971C10E00863FD1 /* UITextField+Ex.swift in Sources */,
+				C0C040CF2972859A00863FD1 /* ExchangeRateModel.swift in Sources */,
 				C0C040972970165100863FD1 /* Date+Ex.swift in Sources */,
 				C0C0408B296FD07C00863FD1 /* DatePickerView.swift in Sources */,
 				C0C04066296ECB0100863FD1 /* AppDelegate.swift in Sources */,
 				C0C04095297014C200863FD1 /* UIButton+Ex.swift in Sources */,
 				C0C040B829715A8800863FD1 /* ConvertorViewController.swift in Sources */,
+				C0C040C32971633F00863FD1 /* ConvertorInfoView.swift in Sources */,
 				C0C04068296ECB0100863FD1 /* SceneDelegate.swift in Sources */,
 				C0C040B22971582700863FD1 /* MainViewProtocol.swift in Sources */,
+				C0C040C92971B83500863FD1 /* UIView+Ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

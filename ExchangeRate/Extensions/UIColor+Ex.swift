@@ -22,4 +22,13 @@ extension UIColor {
     
     ///red: 0.948, green: 0.963, blue: 0.986, alpha: 1
     static let cellBackground = UIColor(red: 0.948, green: 0.963, blue: 0.986, alpha: 1)
+    
+    ///red: 0.133, green: 0.133, blue: 0.133, alpha: 1
+    static let convertorRateLableText = UIColor(red: 0.133, green: 0.133, blue: 0.133, alpha: 1)
+    
+    ///red: 0.008, green: 0.066, blue: 0.155, alpha: 0.2
+    static let convertorTextFieldTint = UIColor(red: 0.008, green: 0.066, blue: 0.155, alpha: 0.2)
+    
+    ///red: 0.235, green: 0.235, blue: 0.263, alpha: 0.18
+    static let convertorTextFieldUnderline = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.18)
 }

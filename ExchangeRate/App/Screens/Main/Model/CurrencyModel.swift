@@ -10,5 +10,6 @@ import Foundation
 struct CurrencyModel {
     let id: String
     let title: String
+    let name: String
     let value: Double
 }

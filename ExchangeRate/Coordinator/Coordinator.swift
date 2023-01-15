@@ -7,13 +7,9 @@
 
 import UIKit
 
-struct Item {
-    
-}
-
 protocol CoordinatorProtocol {
     func createMainVC() -> UIViewController
-    func showConvertorVC(with item: CurrencyModel)
+    func showConvertorVC(with model: CurrencyModel)
 }
 
 final class Coordinator: CoordinatorProtocol {
@@ -34,9 +30,9 @@ final class Coordinator: CoordinatorProtocol {
         return vc
     }
     
-    func showConvertorVC(with item: CurrencyModel) {
-        let vc = ConvertorViewController(navTitle: item.title)
-        let presentor = ConvertorPresenter(coordinator: self, view: vc)
+    func showConvertorVC(with model: CurrencyModel) {
+        let vc = ConvertorViewController(navTitle: model.title)
+        let presentor = ConvertorPresenter(coordinator: self, view: vc, currancyModel: model)
         currentNavigationController?.pushViewController(vc, animated: true)
         vc.presentor = presentor
     }

@@ -8,5 +8,8 @@
 import Foundation
 
 protocol ConvertorPresenterProtocol {
+    var currancyData: CurrencyModel { get }
     
+    func rubChanged(value: String)
+    func currencyChanged(value: String)
 }

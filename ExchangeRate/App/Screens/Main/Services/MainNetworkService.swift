@@ -11,6 +11,7 @@ import Combine
 class MainNetworkService {
     let networkManager: NetworkManagerProtocol
     
+    private let cache = Cache<String, [CurrencyModel]>()
     private let dateFormatter: DateFormatter =  {
         let df = DateFormatter()
         df.dateFormat = "yyyy/MM/dd"
@@ -27,23 +28,31 @@ class MainNetworkService {
         let stringDate = dateFormatter.string(from: date)
         let endpoint = Endpoint.currencies(date: stringDate)
         
+        if let cachedResponse = cache[stringDate] {
+            return Just(cachedResponse)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        
         return networkManager.get(
             type: CurranciesEntity.self,
             url: endpoint.url,
             headers: [:])
-            .map { response -> [CurrencyModel] in
-                return response.valute.values.map { entity -> CurrencyModel in
-                    return CurrencyModel(
+            .map { [weak self] response -> [CurrencyModel] in
+                var currencyModels: [CurrencyModel] = []
+                let responce = response.valute.values.map { entity -> CurrencyModel in
+                    let currencyModel = CurrencyModel(
                         id: entity.id,
                         title: entity.charCode,
+                        name: entity.name,
                         value: entity.value
                     )
+                    currencyModels.append(currencyModel)
+                    return currencyModel
                 }
+                self?.cache[stringDate] = currencyModels
+                return responce
             }
             .eraseToAnyPublisher()
-    }
-    
-    private func transformResponseCurrencyEntityToModel(entity: CurrancyEntity) -> CurrencyModel {
-        return CurrencyModel(id: entity.id, title: entity.charCode, value: entity.value)
     }
 }

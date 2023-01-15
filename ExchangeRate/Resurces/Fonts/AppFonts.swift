@@ -11,4 +11,7 @@ struct AppFonts {
     static let sfProDisplayBold = "SFProDisplay-Bold"
     static let sfProDisplayRegular = "SFProDisplay-Regular"
     static let sfProTextSemibold = "SFProText-Semibold"
+    static let sfProTextMedium = "SFProText-Medium"
+    
+    static let robotoMedium = "Roboto-Medium"
 }

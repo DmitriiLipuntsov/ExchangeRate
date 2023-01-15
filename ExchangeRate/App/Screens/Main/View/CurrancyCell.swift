@@ -44,7 +44,7 @@ class CurrancyCell: UICollectionViewCell {
     
     func configure(model: CurrencyModel) {
         titleLabel.text = model.title
-        valueLabel.text = String(format: "%.2f", model.value) +  " ₽"
+        valueLabel.text = model.value.to2fString +  " ₽"
     }
     
     private func setConstraints() {
