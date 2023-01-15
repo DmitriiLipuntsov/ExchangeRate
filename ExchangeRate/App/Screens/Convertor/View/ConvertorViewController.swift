@@ -15,8 +15,10 @@ class ConvertorViewController: UIViewController {
     
     private let convertorInfoView = ConvertorInfoView()
     private let convertorView = ConvertorView()
+    private let backgroundView = UIView()
     private let scrollView = UIScrollView()
-        
+    private let scrollStackViewContainer = UIStackView()
+    
     init(navTitle: String?) {
         super.init(nibName: nil, bundle: nil)
         self.navTitle = navTitle
@@ -35,15 +37,38 @@ class ConvertorViewController: UIViewController {
     }
     
     private func setupUI() {
-        setupScrollView()
+        setupBackgroundView()
         setupConvertorInfoView()
         setupConvertorView()
+        setupScrollView()
+        setupStackView()
         
         setConstraints()
     }
     
+    private func setupBackgroundView() {
+        backgroundView.backgroundColor = .white
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(backgroundView)
+    }
+    
     private func setupScrollView() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(scrollView)
+        scrollView.addSubview(scrollStackViewContainer)
+        configureContainerView()
+    }
+    
+    private func setupStackView() {
+        scrollStackViewContainer.axis = .vertical
+        scrollStackViewContainer.spacing = 0
+        scrollStackViewContainer.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func configureContainerView() {
+        scrollStackViewContainer.addArrangedSubview(convertorInfoView)
+        scrollStackViewContainer.addArrangedSubview(convertorView)
     }
     
     private func setupConvertorInfoView() {
@@ -73,38 +98,77 @@ class ConvertorViewController: UIViewController {
 //MARK: - Setup contstraints
 extension ConvertorViewController {
     private func setConstraints() {
+        setBackgroundViewConstraints()
+        setScrollViewConstraints()
+        setStackViewConstraints()
+        
         // convertorInfoView
         NSLayoutConstraint.activate([
-            convertorInfoView.topAnchor.constraint(
-                equalTo: view.layoutMarginsGuide.topAnchor,
-                constant: .screenHeight * 0.02
-            ),
-            convertorInfoView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: 16
-            ),
-            convertorInfoView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -16
-            ),
             convertorInfoView.heightAnchor.constraint(
-                equalToConstant: 93
+                equalToConstant: 113
             )
         ])
         
+        // convertorView
         NSLayoutConstraint.activate([
-            convertorView.topAnchor.constraint(
-                equalTo: convertorInfoView.bottomAnchor,
-                constant: 20),
-            convertorView.leadingAnchor.constraint(
+            convertorView.heightAnchor.constraint(
+                equalToConstant: 486
+            ),
+        ])
+    }
+    
+    private func setBackgroundViewConstraints() {
+        NSLayoutConstraint.activate([
+            backgroundView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor
             ),
-            convertorView.trailingAnchor.constraint(
+            backgroundView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor
             ),
-            convertorView.bottomAnchor.constraint(
+            backgroundView.bottomAnchor.constraint(
                 equalTo: view.bottomAnchor
             ),
+            backgroundView.heightAnchor.constraint(
+                equalToConstant: .screenHeight / 2
+            )
+        ])
+    }
+    
+    private func setScrollViewConstraints() {
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(
+                equalTo: view.layoutMarginsGuide.topAnchor,
+                constant: 20
+            ),
+            scrollView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor
+            ),
+            scrollView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor
+            ),
+            scrollView.bottomAnchor.constraint(
+                equalTo: view.layoutMarginsGuide.bottomAnchor
+            )
+        ])
+    }
+    
+    private func setStackViewConstraints() {
+        NSLayoutConstraint.activate([
+            scrollStackViewContainer.leadingAnchor.constraint(
+                equalTo: scrollView.leadingAnchor
+            ),
+            scrollStackViewContainer.trailingAnchor.constraint(
+                equalTo: scrollView.trailingAnchor
+            ),
+            scrollStackViewContainer.topAnchor.constraint(
+                equalTo: scrollView.topAnchor
+            ),
+            scrollStackViewContainer.bottomAnchor.constraint(
+                equalTo: scrollView.bottomAnchor
+            ),
+            scrollStackViewContainer.widthAnchor.constraint(
+                equalTo: scrollView.widthAnchor
+            )
         ])
     }
 }

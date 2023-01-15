@@ -78,10 +78,12 @@ extension ConvertorInfoView {
                 equalTo: topAnchor
             ),
             titleLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor
+                equalTo: leadingAnchor,
+                constant: 16
             ),
             titleLabel.trailingAnchor.constraint(
-                equalTo: trailingAnchor
+                equalTo: trailingAnchor,
+                constant: -16
             )
         ])
         
@@ -91,10 +93,12 @@ extension ConvertorInfoView {
                 equalTo: titleLabel.bottomAnchor,
                 constant: 15),
             rateLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor
+                equalTo: leadingAnchor,
+                constant: 16
             ),
             rateLabel.trailingAnchor.constraint(
-                equalTo: trailingAnchor
+                equalTo: trailingAnchor,
+                constant: -16
             )
         ])
         
@@ -104,10 +108,12 @@ extension ConvertorInfoView {
                 equalTo: rateLabel.bottomAnchor,
                 constant: 6),
             exchangeRateLabel.leadingAnchor.constraint(
-                equalTo: leadingAnchor
+                equalTo: leadingAnchor,
+                constant: 16
             ),
             exchangeRateLabel.trailingAnchor.constraint(
-                equalTo: trailingAnchor
+                equalTo: trailingAnchor,
+                constant: -16
             )
         ])
     }
