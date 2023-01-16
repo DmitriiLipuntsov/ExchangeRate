@@ -207,14 +207,16 @@ extension MainViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        datePickerView.saveButtonIsEnabled(false)
         let label = dateFormatter.string(from: presenter.dateCollection[row])
         return label
     }
 }
 
 // MARK: - UIPickerViewDelegate
-extension MainViewController: UIPickerViewDelegate{
+extension MainViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        datePickerView.saveButtonIsEnabled(true)
         presenter.datePickerSelect(row: row)
     }
 }

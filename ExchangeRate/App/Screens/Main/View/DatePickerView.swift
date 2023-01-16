@@ -32,6 +32,12 @@ class DatePickerView: UIView {
         setConstraints()
     }
     
+    func saveButtonIsEnabled(_ isEnabled: Bool) {
+        saveButton.isEnabled = isEnabled
+        saveButton.backgroundColor = isEnabled ? .white : .lightGray
+        saveButton.alpha = isEnabled ? 1.0 : 0.2
+    }
+    
     private func setupSaveButton() {
         saveButton.setTitle("Сохранить", for: .normal)
         let font = UIFont(name: AppFonts.sfProDisplayRegular, size: 17)
